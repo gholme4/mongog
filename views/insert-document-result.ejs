@@ -1,0 +1,53 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> 
+				<a href='/database/<%= databaseName  %>' >
+					<span class="icon-database"></span> <%= databaseName  %> 
+				</a> 
+				<a href='/database/<%= databaseName  %>/<%= collectionName %>/documents' >
+					/ <%= collectionName %>
+				</a>
+				 / Insert Result
+			</h3>
+			
+			<%
+			if (document)
+			{
+			%>
+				<h5>Successfully inserted document</h5>
+				<pre><code class="json"><%- document %></code></pre>
+			<%
+			}
+			else
+			{
+				var outputError = "";
+				
+				if (typeof error === "object")
+				{
+					
+					outputError = error.toString();
+
+				}
+				else
+				{
+					outputError = error;
+
+				}
+
+			%>
+				Error inserting document
+				</br>
+				</br>
+				<pre><code class="json"><%- outputError %></code></pre>
+			<%
+			}
+			%>
+
+		</div>
+
+	</div>
+
+</div>

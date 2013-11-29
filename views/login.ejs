@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=yes">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<title>Mongo-G | <%= title %></title>
+
+</head>
+
+<body>
+	<div id="alert-modal" class="reveal-modal">
+      <h2 id="alert-modal-title">Error</h2>
+      <p class="lead" id="alert-modal-message"></p>
+      <p></p>
+      <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="login-box panel">
+				
+				<img class="login-logo" src="/images/logo-blue.png" alt="Mongo-G">
+				<h2 class="center">Login </h2>
+				<form id="login-form">
+					<input type="text" class="required" name="username" />
+					<input type="password" class="required" name="password" />
+					<button class="login-button primary">Log in</button>
+					<div class="ajax-spinner"></div>
+				</form>	
+			</div>
+			
+		</div>
+	</div>
+
+
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<dl class="sub-nav">
+	<dd><a href="/database/<%= databaseName %>/<%= collectionName %>/documents">Documents</a></dd>
+	<dd><a href="/database/<%= databaseName %>/<%= collectionName %>/stats">| Stats</a></dd>
+	
+
+	<%
+	if (collectionName != "system.indexes")
+	{
+	%>
+
+	<dd><a href="#" id="open-drop-collection" data-collection-name="<%= collectionName %>" data-database-name="<%= databaseName %>">| Drop </a></dd>
+	<dd><a href="/database/<%= databaseName %>/<%= collectionName %>/insert">| Insert </a></dd>
+	<%
+	}
+	%>
+</dl>
+
+<div id="drop-collection-modal" class="reveal-modal">
+	<h2 class="modal-title">Drop Collection</h2>
+	<p class="lead modal-message">
+		<h5>Are you sure you want to drop this collection?</h5>
+
+		<button id="drop-collection">Yes</button>
+		<button class="cancel-drop-collection secondary">Cancel</button>
+	</p>
+	<p></p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<form id="drop-collection-form" style="display:none;" method="post" action="/database/<%= databaseName %>/drop-collection">
+	<input id="collection_drop" name="collection_drop" value="" class="" type="text"/>
+
+</form>

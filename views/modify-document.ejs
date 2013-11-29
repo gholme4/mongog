@@ -1,0 +1,30 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> 
+				<a href='/database/<%= databaseName  %>' >
+					<span class="icon-database"></span> <%= databaseName  %> 
+				</a> 
+				<a href='/database/<%= databaseName  %>/<%= collectionName %>/documents' >
+					/ <%= collectionName %>
+				</a>
+				 / Modify - <%- documentId %>
+			</h3>
+			
+			<form id="modify-document-form" method="post" action="/database/<%= databaseName  %>/<%= collectionName  %>/modify-document/<%= documentId %>">
+				<label>_id</label>
+				<input type="text" value="<%= documentId %>" name= "_id" readonly/>
+
+				<label>Data</label>
+				<textarea name="modify-data" class="large-12"><%= document %></textarea>
+				<button class="button small"> Save Changes</button>
+
+			</form>
+			
+		</div>
+
+	</div>
+
+</div>

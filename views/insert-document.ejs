@@ -1,0 +1,30 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> 
+				<a href='/database/<%= databaseName  %>' >
+					<span class="icon-database"></span> <%= databaseName  %> 
+				</a> 
+				<a href='/database/<%= databaseName  %>/<%= collectionName %>/documents' >
+					/ <%= collectionName %>
+				</a>
+				 / Insert
+			</h3>
+			
+			<form id="insert-document-form" method="post" action="/database/<%= databaseName  %>/<%= collectionName  %>/insert">
+				<input type="hidden" value="<%= databaseName  %>" name= "databaseName" readonly/>
+				<input type="hidden" value="<%= collectionName  %>" name= "collectionName" readonly/>
+
+				<label>Enter JSON data</label>
+				<textarea name="insert-data" rows="12" style="height: auto;" class="large-12">{    }</textarea>
+				<button class="button small"> Insert </button>
+
+			</form>
+			
+		</div>
+
+	</div>
+
+</div>

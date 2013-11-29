@@ -1,0 +1,50 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> 
+				<a href='/database/<%= databaseName  %>' >
+					<span class="icon-database"></span> <%= databaseName  %> 
+				</a> 
+				
+				 / Drop Collection
+			</h3>
+			
+			<%
+			if (collectionName)
+			{
+			%>
+				<h5>Successfully dropped collection: <%- collectionName %></h5>
+			<%
+			}
+			else
+			{
+				var outputError = "";
+				
+				if (typeof error === "object")
+				{
+					
+					outputError = error.toString();
+
+				}
+				else
+				{
+					outputError = error;
+
+				}
+
+			%>
+				Error dropping collection
+				</br>
+				</br>
+				<pre><code class="json"><%- outputError %></code></pre>
+			<%
+			}
+			%>
+
+		</div>
+
+	</div>
+
+</div>

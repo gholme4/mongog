@@ -1,0 +1,113 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> <a href='/database/<%= databaseName  %>' ><span class="icon-database"></span> <%= databaseName  %> </a> /<%= collectionName %></h3>
+			
+			<%- partial('collection-menu.ejs') %>
+
+			<%
+			var storageSize = collectionStats.storageSize/1024;
+			storageSize = storageSize.toFixed(2) + "K";
+
+			var size = collectionStats.size/1024;
+			size = size.toFixed(2) + "K";
+
+			var totalIndexSize = collectionStats.totalIndexSize/1024;
+			totalIndexSize = totalIndexSize.toFixed(2) + "K";
+
+			%>
+
+			<!-- Collection stats table -->
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Collection Stats
+					</div>
+				</div>
+				
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Namespace
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= collectionStats.ns %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Documents
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= collectionStats.count %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= size %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Storage Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= storageSize %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Indexes
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= collectionStats.nindexes %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Index Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= totalIndexSize %>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>

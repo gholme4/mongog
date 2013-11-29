@@ -1,0 +1,16 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> <a href='/database/<%= databaseName  %>' ><span class="icon-database"></span> <%= databaseName  %> </a> /<%= collectionName %></h3>
+			
+			<%- partial('collection-menu.ejs') %>
+
+			
+			
+		</div>
+
+	</div>
+
+</div>

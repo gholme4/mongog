@@ -1,0 +1,131 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> System Information</h3>
+			
+			
+
+			<!-- Server status table -->
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Server Status 
+					</div>
+				</div>
+				<%
+
+				if (!serverStatus)
+				{
+				%>
+					<h5>There was a problem getting the server status. </h5>
+				<%
+				}
+				else
+				{
+					for (var key in serverStatus) {
+						var value = serverStatus[key];
+					
+				%>
+						<div class="row system-row">
+							<div class="large-6 small-6 columns system-label">
+								<div>
+									<%= key %>
+								</div>
+							</div>
+							<div class="large-6 small-6 columns system-value">
+								<div>
+									<pre><code class="json"><%- JSON.stringify(value) %></code></pre>
+								</div>
+							</div>
+						</div>
+				<%
+					}
+				}
+				%>
+			</div>
+
+			<!-- Build info table -->
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Build Info
+					</div>
+				</div>
+				<%
+				if (!buildInfo)
+				{
+				%>
+					<h5>There was a problem getting the build info. </h5>
+				<%
+				}
+				else
+				{
+					for (var key in buildInfo) {
+						var value = buildInfo[key];
+					
+				%>
+						<div class="row system-row">
+							<div class="large-6 small-6 columns system-label">
+								<div>
+									<%= key %>
+								</div>
+							</div>
+							<div class="large-6 small-6 columns system-value">
+								<div>
+									<pre><code class="json"><%- JSON.stringify(value) %></code></pre>
+								</div>
+							</div>
+						</div>
+				<%
+					}
+				}
+				%>
+				
+			</div>
+
+			<!-- Replication info table -->
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Replication Info
+					</div>
+				</div>
+				<%
+
+				if (!replInfo)
+				{
+				%>
+					<h5>There was a problem getting replication info. </h5>
+				<%
+				}
+				else
+				{
+					for (var key in replInfo) {
+						var value = replInfo[key];
+					
+				%>
+						<div class="row system-row">
+							<div class="large-6 small-6 columns system-label">
+								<div>
+									<%= key %>
+								</div>
+							</div>
+							<div class="large-6 small-6 columns system-value">
+								<div>
+									<pre><code class="json"><%- JSON.stringify(value) %></code></pre>
+								</div>
+							</div>
+						</div>
+				<%
+					}
+				}
+				%>
+			</div>
+			
+		</div>
+
+	</div>
+
+</div>

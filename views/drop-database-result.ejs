@@ -1,0 +1,46 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> 
+				<span class="icon-database"></span> <%= databaseName  %> / Drop Database Result
+			</h3>
+			
+			<%
+			if (!error)
+			{
+			%>
+				<h5>Successfully dropped database: <%- databaseName %></h5>
+			<%
+			}
+			else
+			{
+				var outputError = "";
+				
+				if (typeof error === "object")
+				{
+					
+					outputError = error.toString();
+
+				}
+				else
+				{
+					outputError = error;
+
+				}
+
+			%>
+				Error dropping database
+				</br>
+				</br>
+				<pre><code class="json"><%- outputError %></code></pre>
+			<%
+			}
+			%>
+
+		</div>
+
+	</div>
+
+</div>

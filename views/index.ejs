@@ -1,0 +1,99 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> MongoDB Overview </h3>
+
+			<a href="/create-database"><span class="icon-plus-alt"></span> Create New Database</a>
+
+			<div class="overview-database-list">
+				<div class="row overview-database-list-header">
+					<div class="large-2 columns">
+						<div>Database</div>
+					</div>
+					<div class="large-2 columns">
+						<div>Collections</div>
+					</div>
+					<div class="large-2 columns">
+						<div>Objects</div>
+					</div>
+					<div class="large-2 columns">
+						<div>File Size</div>
+					</div>
+					<div class="large-2 columns">
+						<div>Data Size</div>
+					</div>
+					<div class="large-2 columns">
+						<div>Storage Size</div>
+					</div>
+				</div>
+				<% for(var i=0; i<databases.length; i++) {
+						var database = databases[i];
+							
+						var fileSize = database.fileSize/1024/1024;
+						fileSize = fileSize.toFixed(1) + "MB";
+
+						var dataSize = database.dataSize/1024;
+						dataSize = dataSize.toFixed(1) + "K";
+
+						var storageSize = database.storageSize/1024;
+						storageSize = storageSize.toFixed(1) + "K";
+				%>
+	   			<div class="row overview-database-row">	
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							Database: 
+						</div>
+						<div class="overview-database-value">
+							<a href="/database/<%= database.db %>"><%= database.db %></a> 
+						</div>
+					</div>
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							Collections: 
+						</div>
+						<div class="overview-database-value">
+							<%= database.collections - 1 %>
+						</div>
+					</div>
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							Objects: 
+						</div>
+						<div class="overview-database-value">
+							<%= database.objects %>
+						</div>
+					</div>
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							File Size: 
+						</div>
+						<div class="overview-database-value">
+							<%= fileSize %>
+						</div>
+					</div>
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							Data Size: 
+						</div>
+						<div class="overview-database-value">
+							<%= dataSize %>
+						</div>
+					</div>
+					<div class="large-2 columns overview-database-column">
+						<div class="overview-database-label">
+							Storage Size: 
+						</div>
+						<div class="overview-database-value">
+							<%= storageSize %>
+						</div>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+
+	</div>
+
+</div>

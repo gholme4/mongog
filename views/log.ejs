@@ -1,0 +1,33 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> Log </h3>
+			
+			<div class="log">
+				<%
+				if (!log)
+				{
+				%>
+					<h5>There was a problem getting the log. </h5>
+				<%
+				}
+				else
+				{
+					for(var i = 0; i < log.log.length; i++)
+					{
+				%>	
+						<div><%= log.log[i] %></div>
+
+					
+				<%
+					}
+				}
+				%>
+			</div>
+		</div>
+
+	</div>
+
+</div>

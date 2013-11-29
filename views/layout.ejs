@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=yes">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<title>Mongo-G | <%= title %></title>
+
+</head>
+
+<body>
+	<!-- Alert Modal -->
+	<div id="alert-modal" class="reveal-modal">
+      <h2 id="alert-modal-title">Error</h2>
+      <p class="lead" id="alert-modal-message"></p>
+      <p></p>
+      <a class="close-reveal-modal">&#215;</a>
+	</div>
+
+	<!-- Main Menu -->
+	<div class="fixed nav-container">
+		<nav class="top-bar">
+		    <ul class="title-area">
+		    	  <li class="toggle-topbar"><a href="#"><img src="/images/menu-wht.png" alt="" /></a></li>	
+		          <!-- Title Area -->
+		          <li class="name">
+		                <h1> <a href="/"><img class="admin-logo" src="/images/logo.png" alt="Mongo-G"></a> </h1>
+		          </li>
+
+		          
+		          
+		    </ul>
+		    <section class="top-bar-section"> 
+		          <!-- Left Nav Section -->
+		          <ul class="left">
+		          		<li class="divider"></li>
+		                <li class=""><a class="" href="/">Overview</a></li>
+		                <li class="divider"></li>
+		                <li class=""><a class="" href="/system">System</a></li>
+		                <li class="divider"></li>
+		                <li class=""><a class="" href="/log">Log</a></li>
+		                <li class="divider"></li>
+		                <li class=""><a class="" href="/logout">Logout</a></li>
+		           
+		          </ul>
+		          <!-- Right Nav Section -->
+		          <ul class="right">
+		          		
+		                
+		          </ul>
+		    </section>
+		    <div class="" id="database-toggle"><a href="#"><span class="icon-database"></span></a></div>
+		</nav>
+	</div>
+	<!-- End Main Menu -->
+
+	
+	<div class="container">
+		<!-- Load page content -->
+		<%- body %>
+	</div>
+
+	<section id="database-list-container">
+		<div class="side-database-list">
+			<div><a href="/create-database"><span class="icon-plus-alt"></span> Create New Database</a></div>
+			<% 
+			if (!databases)
+			{
+			%>
+				<h5>Error getting databases</h5>
+			<%
+			}
+			else
+			{	
+				for(var i=0; i<databases.length; i++) {
+					var database = databases[i];
+				%>
+	   				<div> <a href="/database/<%= database.db %>"><%= database.db %> (<%= database.collections - 1 %>) </a> </div>
+				<% } 
+			}
+			%>
+		</div>
+	</section>
+<script src="/js/script.js"></script>
+</body>
+</html>

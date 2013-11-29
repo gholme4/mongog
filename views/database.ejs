@@ -1,0 +1,189 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> <a href='/database/<%= title  %>' ><span class="icon-database"></span> <%= title  %> </a> </h3>
+			<dl class="sub-nav">
+	
+				<dd><a href="#" id="open-drop-database" data-database-name="<%= database.db %>"> Drop </a></dd>
+				<!--<dd><a href="/database/<%= database.db %>/import">| Import </a></dd>
+				<dd><a href="/database/<%= database.db %>/export">| Export </a></dd>-->
+				<dd><a id="open-create-collection" href="#">| Create Collection </a></dd>
+	
+			</dl>
+				
+				<% 
+					var fileSize = database.fileSize/1024/1024;
+					fileSize = fileSize.toFixed(1) + "MB";
+
+					var dataSize = database.dataSize/1024;
+					dataSize = dataSize.toFixed(1) + "K";
+
+					var storageSize = database.storageSize/1024;
+					storageSize = storageSize.toFixed(1) + "K";
+
+					var indexSize = database.indexSize/1024;
+					indexSize = indexSize.toFixed(1) + "K";
+
+					
+				%>
+	   			
+			<!-- Database info table -->
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Database Info
+					</div>
+				</div>
+				
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Data Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= dataSize %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							File Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= fileSize %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Storage Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= storageSize %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Indexes
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= database.indexes %>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Index Size
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= indexSize %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Objects
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<%= database.objects %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row system-row">
+					<div class="large-6 small-6 columns system-label">
+						<div>
+							Collections
+						</div>
+					</div>
+					<div class="large-6 small-6 columns system-value">
+						<div>
+							<% for (var i = 0; i < database.collectionsList.length; i++) 
+							{
+							%>
+								<a href="/database/<%= database.db %>/<%= database.collectionsList[i].collectionName %>/documents">
+									<%= database.collectionsList[i].collectionName %>
+								</a>
+								</br>
+							<%
+							}
+							%>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div id="create-collection-modal" class="reveal-modal">
+	<h2 class="modal-title">Create Collection</h2>
+	<p class="lead modal-message">
+		<form id="create-collection-form" method="post" action="/database/<%= database.db %>/create-collection">
+			<label>Collection Name </label>
+			<input id="collection_name" name="collection_name" value="" class="required" type="text"/>
+
+			</hr>
+			<label>Is this a capped collection?</label>
+			<select name="capped" id="capped">
+				<option value="no">No</option>
+				<option value="yes">Yes</option>
+			</select>
+
+			<div class="capped_fields" style="display: none;">
+				<label>Size</label>
+				<input name="size" value="" class="required number" type="text"/>
+
+				<label>Max</label>
+				<input name="max" value="" class="number" type="text"/>
+			</div>
+			<input type="submit" value="Submit" class="button"/>
+		</form>
+	</p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="drop-database-modal" class="reveal-modal">
+	<h2 class="modal-title">Drop Database</h2>
+	<p class="lead modal-message">
+		<h5>Are you sure you want to drop this database?</h5>
+
+		<button class="drop-database">Yes</button>
+		<button class="cancel-drop-database secondary">Cancel</button>
+	</p>
+	<p></p>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+<form style="display:none;" id="drop-database-form" method="post" action="/drop-database">
+	<input id="drop_database" name="drop_database" value="" type="hidden"/>
+	<input type="submit" value="submit"/>
+</form>
+
