@@ -6,7 +6,7 @@ Mongo-G
 
 Overview
 -----------
-Mongo-G is a standalone Node.JS app built with Express and EJS. It's a GUI wrapper that abstracts common MongoDB functions. Users can manage databases, collections, and documents.
+Mongo-G is a standalone Node.JS app built with Express and EJS. It's a GUI wrapper inspired by [RockMongo](http://rockmongo.com "RockMongo") that abstracts common MongoDB functions. Users can manage databases, collections, and documents.
 
 Setup
 -----------
@@ -49,5 +49,11 @@ Development
 -----------
 * The responsive UI is built with the [Foundation](http://foundation.zurb.com/docs/ "Foundation") framework
 * All front-end JavaScript and CSS files are concatenated using [Grunt](http://gruntjs.com/ "Grunt") to **/public/js/script.js** and **/public/css/style.css**. Edit Gruntfile.js to add more stylesheets and JavaScripts. Minification of CSS and JS can also be enabled in this file.
+*
+
+Contact
+-----------
+* Contact me at [HERE](http://me.georgeholmesii.com/contact/ "Contact") for questions or suggestions.
+
 
 **Mongo-G is a work in progress and is intended for development use**.
