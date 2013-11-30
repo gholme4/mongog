@@ -45,4 +45,9 @@ Notes
 * To modify and delete a document, it must have an _id field
 
 
+Development
+-----------
+* The responsive UI is built with the [Foundation](http://foundation.zurb.com/docs/ "Foundation") framework
+* All front-end JavaScript and CSS files are concatenated using [Grunt](http://gruntjs.com/ "Grunt") to **/public/js/script.js** and **/public/css/style.css**. Edit Gruntfile.js to add more stylesheets and JavaScripts. Minification of CSS and JS can also be enabled in this file.
+
 **Mongo-G is a work in progress and is intended for development use**.
