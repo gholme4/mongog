@@ -121,8 +121,8 @@ var Database = function () {
 
 	/* Get system data */
 	this.getSystemData = function (callback) {
-		var serverStatus;
-		var buildInfo;
+		var serverStatus = {};
+		var buildInfo = {};
 
 		/* Get the server status */
 		$this.db("admin").admin().serverStatus( function(err, status) {
@@ -132,9 +132,14 @@ var Database = function () {
 				return;
 
 			}
-
-			serverStatus = status;
-
+			
+			/* Convert server status object values into pretty BSON */
+			for (var key in status) {
+				var value = status[key];
+				var valueString = bson.toString(value, null, 3);
+				serverStatus[key] = prettyBson.bson.prettyPrint(valueString);
+			}
+	
 			/* Get build info */
 			$this.db("admin").admin().buildInfo( function(error, info) {
 				if (error)
@@ -144,7 +149,13 @@ var Database = function () {
 					
 				}
 
-				buildInfo = info;
+				/* Convert system info object values into pretty BSON */
+				for (var key in info) {
+					var value = info[key];
+					var valueString = bson.toString(value, null, 3);
+					buildInfo[key] = prettyBson.bson.prettyPrint(valueString);
+				}
+
 				/* Get replication info */
 				$this.db("admin").admin().replSetGetStatus(function(repError, repStatus) {
 

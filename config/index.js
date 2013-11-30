@@ -39,7 +39,6 @@ var configuration = function(app, passport, LocalStrategy){
 
 
 	/* Initialize passort authentication */
-	
 	passport.use(new LocalStrategy(
 		function (username, password, done) {
 			var user = new User();

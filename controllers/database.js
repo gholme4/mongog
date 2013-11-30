@@ -17,7 +17,7 @@ function getStats (callback) {
 		{
 			databaseList = dbs.databases;
 
-			/* Pass list of databases into function to get stats of databases */
+			/* Use list of database names to get stats of all databases */
 			database.allDatabasesStats(databaseList, function (stats) {
 				if (!stats)
 				{
@@ -72,7 +72,7 @@ var databasePage =  function(req, res){
 
 			if (stats[i].db == databaseName)
 			{
-				/* If database is found render the datbase view */
+				/* If database is found render the database view */
 				thisDatabase = stats[i];
 
 			}
