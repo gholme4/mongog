@@ -4,6 +4,9 @@ Mongo-G
 #### Responsive web based MongoDB management interface for Node.JS
 <img src="http://georgeholmesii.com/mongog1.png" title="screenshot" />
 
+[Watch Video Demo](https://www.youtube.com/watch?v=OCnq0pNkoOk "video demo")
+----------
+
 Overview
 -----------
 Mongo-G is a standalone Node.JS app built with Express and EJS. It's a GUI wrapper inspired by [RockMongo](http://rockmongo.com "RockMongo") that abstracts common MongoDB functions. Users can manage databases, collections, and documents.
