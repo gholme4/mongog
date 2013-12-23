@@ -29,6 +29,9 @@ Setup
     
     node server
 
+**Run unit tests with:**
+    
+    mocha
 
 Capabilities
 -----------
