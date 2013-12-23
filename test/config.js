@@ -6,10 +6,10 @@
 */
 var params = {
 	nodePort : 8080,
-	mongoUsername : "gholme4",
-	mongoPassword : "miccheck",
-	mongoPort : "27017",
-	mongoHostname : "localhost"
+	mongoUsername : "MONGOUSERNAME",
+	mongoPassword : "MONGOPASSWORD",
+	mongoPort : "MONGOPORT",
+	mongoHostname : "HOSTNAME"
 };
 
 module.exports = params;
