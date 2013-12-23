@@ -1,0 +1,43 @@
+<% layout('layout') -%>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<h3> <a href='/database/<%= database.db  %>' ><span class="icon-database"></span> <%= database.db  %> </a> </h3>
+		
+			<div class="fluid-table">
+				<div class="row table-header">
+					<div class="large-12">
+						Choose collections to export
+					</div>
+				</div>
+				
+					<div class="row system-row">
+						
+						<div class="large-12 small-12 columns system-value">
+							<div>
+								<form id="export-collections-form" method="post" action="/database/<%- database.db %>/export-collections">
+								<% for (var i = 0; i < database.collectionsList.length; i++) 
+								{
+								%>
+									
+										<input type="checkbox" name="collections[]" value="<%= database.collectionsList[i].collectionName %>" /> <%= database.collectionsList[i].collectionName %>
+									
+									</br>
+								<%
+								}
+								%>
+								</br>
+								<input type="submit" class="button" value="Export" />
+								</form>
+							</div>
+						</div>
+					</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+

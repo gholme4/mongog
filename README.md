@@ -27,7 +27,7 @@ Setup
 
 **Run Mongo-G with:**
     
-    node app
+    node server
 
 
 Capabilities

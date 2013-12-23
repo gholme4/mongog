@@ -729,3 +729,152 @@ var dropDatabase =  function(req, res){
 };
 
 exports.dropDatabase = dropDatabase;
+
+/* Render database import page */
+var importView =  function(req, res){
+	
+	var databaseName = req.param('database');
+
+	/* Get list of all databases */
+	getStats(function(stats) {
+
+		var thisDatabase;
+
+		/* Find selected database in the stats list */
+		for (var i = 0; i <stats.length; i++)
+		{
+
+			if (stats[i].db == databaseName)
+			{
+				/* If database is found render the database view */
+				thisDatabase = stats[i];
+
+			}
+
+		}
+
+		if (!thisDatabase)
+		{
+			/* Database not found so render error view */
+			databaseError(req, res);
+			return;
+		}
+
+		var database = new Database();
+
+		/* Get selected database collections*/
+		database.getCollections(databaseName, function (collections) {
+			if (!collections)
+			{
+				/* Error getting database collections */
+				databaseError(req, res);
+				return;
+			}
+
+			thisDatabase.collectionsList = collections;
+			var params = {
+				title: databaseName + " Export",
+				databases: stats,
+				database: thisDatabase
+			};
+			
+			res.render('import.ejs', params);
+
+		});
+		
+	});
+
+};
+
+exports.importView = importView;
+
+
+/* Render export page */
+var exportView =  function(req, res){
+	
+	var databaseName = req.param('database');
+
+	/* Get list of all databases */
+	getStats(function(stats) {
+
+		var thisDatabase;
+
+		/* Find selected database in the stats list */
+		for (var i = 0; i <stats.length; i++)
+		{
+
+			if (stats[i].db == databaseName)
+			{
+				/* If database is found render the database view */
+				thisDatabase = stats[i];
+
+			}
+
+		}
+
+		if (!thisDatabase)
+		{
+			/* Database not found so render error view */
+			databaseError(req, res);
+			return;
+		}
+
+		var database = new Database();
+
+		/* Get selected database collections*/
+		database.getCollections(databaseName, function (collections) {
+			if (!collections)
+			{
+				/* Error getting database collections */
+				databaseError(req, res);
+				return;
+			}
+
+			thisDatabase.collectionsList = collections;
+			var params = {
+				title: databaseName + " Export",
+				databases: stats,
+				database: thisDatabase
+			};
+			
+			res.render('export.ejs', params);
+
+		});
+		
+	});
+
+};
+
+exports.exportView = exportView;
+
+/* Export database's collections */
+var exportCollections =  function(req, res){
+	
+	var databaseName = req.param('database');
+	var exportCollections = req.param('collections');
+
+	console.log(exportedCollections);
+
+	/* Get list of all databases */
+	getStats(function(stats) {
+
+		var database = new Database();
+
+		/* Pass in collections to be exported */
+		database.exportCollections(databaseName, exportCollections, function (exportedCollections) {
+			var params = {
+				title: databaseName + " Export Result",
+				databases: stats,
+				databaseName: databaseName,
+				collections: exportedCollections
+			};
+			
+			res.render('export-result.ejs', params);
+
+		});
+
+	});
+
+};
+
+exports.exportCollections = exportCollections;

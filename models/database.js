@@ -581,6 +581,53 @@ var Database = function () {
 	};
 	/* End this.dropDatabase */
 
+	this.exportCollections = function (databaseName, collections, callback) {
+		var exportedCollections = [];
+
+		function nullCallback () {
+			return;
+		}
+
+		/* Loop through all collections and get documents of each */
+		async.each(
+			collections,
+			function (collection, nullCallback) {
+				var collectionName = collection;
+				
+				/* Get collection */
+				$this.db(databaseName).collection(collectionName, function (err, col) {
+					if (err)
+					{
+						console.log(err);
+						nullCallback();
+						return;
+					}
+					
+					/* Get all documents in this collection */
+					col.find(function (err1, documents) {
+						if (err1)
+						{
+							console.log(err);
+							nullCallback();
+							return;
+						}
+
+						exportedCollections.push(collectionName);
+					});
+				
+				});
+
+		
+			},
+			function (err2) {
+				
+				callback(exportedCollections);
+			}
+		);
+		/* End async.each */
+
+	};
+
 };
 /* End var Database */
 

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "author": {
     "name": "George Holmes II",
@@ -28,7 +28,8 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.5",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-cssmin": "~0.6.2"
+    "grunt-contrib-cssmin": "~0.6.2",
+    "chai" : "*"
   },
   "bundleDependencies": [],
   "engines": {

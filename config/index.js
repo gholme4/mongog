@@ -16,8 +16,9 @@ var configuration = function(app, passport, LocalStrategy){
 	app.get('/database/:database/:collection/documents', DatabaseController.collectionDocuments);
 	app.post('/database/:database/:collection/documents', DatabaseController.deleteDocument);
 	app.get('/database/:database/:collection/stats', DatabaseController.collectionStats);
-	app.get('/database/:database/export', DatabaseController.export);
-	app.get('/database/:database/import', DatabaseController.import);
+	app.get('/database/:database/export', DatabaseController.exportView);
+	app.get('/database/:database/import', DatabaseController.importView);
+	app.post('/database/:database/export-collections', DatabaseController.exportCollections);
 	app.post('/database/:database/create-collection', DatabaseController.createCollection);
 	app.post('/database/:database/drop-collection', DatabaseController.dropCollection);
 	app.get('/database/:database/:collection/modify/:documentId', DatabaseController.modifyDocumentView);
@@ -36,6 +37,15 @@ var configuration = function(app, passport, LocalStrategy){
 	app.post('/login-user', UserController.loginUser);
 	app.get('/login-success', UserController.loginSuccess);
 	app.get('/logout', UserController.logout);
+
+
+	app.get('/tests', function (req, res) {
+		var params = {
+			title: "Tests"
+		};
+
+		res.render("tests", params);
+	});
 
 
 	/* Initialize passort authentication */

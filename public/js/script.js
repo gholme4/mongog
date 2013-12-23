@@ -120,7 +120,7 @@ $(function () {
 		}
 		/* End submitHandler */
 	});
-	/* End jQuery(this).validate() */
+	/* End jQuery("#login-form").validate() */
 
 	/* Toggle visibility of database list slideout container */
 	$("#database-toggle").click(function (e) {
@@ -238,5 +238,15 @@ $(function () {
 	$(".drop-database").click(function (e) {
 		$('#drop-database-form').submit();
 	});
+
+	/* Export collections ///////////////////////////////////////////////////////////////////////////*/
+	jQuery("#export-collections-form").validate({
+		onclick: false,
+		submitHandler: function(form) {
+			form.submit();
+		}
+		/* End submitHandler */
+	});
+	/* End jQuery("#export-collections-form"").validate() */
 	
 });
